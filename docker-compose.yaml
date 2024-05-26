@@ -1,0 +1,20 @@
+version: '3'
+services:
+  frontend:
+    build:
+      context: ./frontend
+    volumes:
+      - ./frontend:/app/frontend/
+    ports:
+      - 3000:3000
+    environment:
+      - NUXT_PUBLIC_API_BASE=${BACKEND_URL}
+  backend:
+    build:
+      context: ./backend
+    volumes:
+      - ./backend:/app/backend/
+    ports:
+      - 80:80
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
